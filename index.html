@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        font-family:
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          'Segoe UI',
+          sans-serif;
+        background-color: #330000;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 800 400'%3E%3Cdefs%3E%3CradialGradient id='a' cx='396' cy='281' r='514' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23D18'/%3E%3Cstop offset='1' stop-color='%23330000'/%3E%3C/radialGradient%3E%3ClinearGradient id='b' gradientUnits='userSpaceOnUse' x1='400' y1='148' x2='400' y2='333'%3E%3Cstop offset='0' stop-color='%23FA3' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23FA3' stop-opacity='0.5'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill='url(%23a)' width='800' height='400'/%3E%3Cg fill-opacity='0.4'%3E%3Ccircle fill='url(%23b)' cx='267.5' cy='61' r='300'/%3E%3Ccircle fill='url(%23b)' cx='532.5' cy='61' r='300'/%3E%3Ccircle fill='url(%23b)' cx='400' cy='30' r='300'/%3E%3C/g%3E%3C/svg%3E");
+        background-attachment: fixed;
+        background-size: cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+      }
+
+      .container {
+        max-width: 800px;
+        width: 100%;
+        margin-block: 100px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+      }
+
+      .text-center {
+        text-align: center;
+      }
+    </style>
+    <title>Tarot API</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1 id="api-de-cartas-del-tarot-gratuita-con-im-genes" class="text-center">API de Cartas del Tarot</h1>
+      <p class="text-center">¡Bienvenido a la API definitiva de cartas del Tarot, disponible de forma gratuita!</p>
+      <p>🌟 <strong>Características:</strong></p>
+      <ul>
+        <li><strong>Selector de Carta Aleatoria:</strong> Nuestra API puede seleccionar una carta del Tarot al azar, ofreciendo una experiencia única cada vez.</li>
+        <li><strong>Listado Completo de Cartas:</strong> Accede a una lista exhaustiva de todas las cartas del Tarot en nuestra colección.</li>
+        <li><strong>Imágenes de Alta Calidad:</strong> Cada carta del Tarot viene con una imagen de alta resolución bellamente diseñada.</li>
+        <li><strong>Búsqueda Inteligente (Fuzzy Search):</strong> Encuentra cartas por nombre o descripción, incluso con errores tipográficos, gracias a la potencia de <code>fuse.js</code>.</li>
+        <li><strong>Soporte Multi-idioma:</strong> Contenido disponible tanto en Inglés (<code>en</code>) como en Español (<code>es</code>).</li>
+        <li><strong>Fácil de Usar:</strong> Diseñada pensando en la simplicidad, nuestra API es intuitiva y fácil de integrar en cualquier proyecto.</li>
+        <li><strong>Código Abierto:</strong> Siéntete libre de hacer fork de este repositorio y usar nuestra API en tus proyectos sin costo alguno.</li>
+      </ul>
+      <p>🔮 <strong>Ideal para:</strong></p>
+      <ul>
+        <li>Sitios web y aplicaciones móviles de lectura de Tarot.</li>
+        <li>Creadores de contenido esotérico, espiritual y astrológico.</li>
+        <li>Proyectos personales que exploran la adivinación y el simbolismo.</li>
+        <li>Propósitos educativos para aprender sobre el desarrollo de APIs en Node.js.</li>
+      </ul>
+      <p>💡 <strong>Cómo Empezar:</strong></p>
+      <ol>
+        <li><strong>Clona o Haz Fork del Repositorio:</strong> Comienza obteniendo el código fuente en tu máquina local.</li>
+        <li><strong>Instala las Dependencias:</strong> Ejecuta <code>npm install</code> para instalar Express y las librerías necesarias.</li>
+        <li><strong>Inicia el Servidor:</strong> Ejecuta <code>npm start</code> para poner la API en funcionamiento (o <code>npm run dev</code> para modo desarrollo).</li>
+        <li><strong>Implementa en tu Proyecto:</strong> Utiliza los endpoints detallados a continuación para consumir los datos.</li>
+      </ol>
+      <h2 id="endpoints">Endpoints</h2>
+      <p>
+        La ruta base para acceder a las cartas es <code>/cards</code>. Todos los endpoints admiten un parámetro de consulta (query parameter) opcional llamado <code>lang</code> para cambiar el idioma (valores:
+        <code>en</code>, <code>es</code>. Por defecto: <code>en</code>).
+      </p>
+      <h3 id="1-obtener-todas-las-cartas">1. Obtener todas las cartas</h3>
+      <p><code>GET /cards?lang=es</code> Devuelve un JSON con el arreglo completo de las cartas del Tarot.</p>
+      <h3 id="2-obtener-una-carta-aleatoria">2. Obtener una carta aleatoria</h3>
+      <p><code>GET /cards/random?lang=es</code> Devuelve un objeto con la información de una sola carta elegida al azar.</p>
+      <h3 id="3-buscar-cartas">3. Buscar cartas</h3>
+      <p>
+        <code>GET /cards/search/:termino?lang=es</code> Realiza una búsqueda difusa utilizando el <code>:termino</code> proporcionado. Busca coincidencias tanto en el nombre de la carta como en su descripción. Es ideal
+        para buscar por palabras clave como &quot;prosperidad&quot;, &quot;amor&quot; o nombres parciales.
+      </p>
+      <h3 id="4-im-genes">4. Imágenes</h3>
+      <p>
+        Las imágenes se sirven de forma estática. Puedes acceder a ellas mediante la ruta <code>/tarotdeck/</code> seguida del nombre del archivo especificado en el campo <code>image</code> de cada carta (ejemplo:
+        <code>/tarotdeck/thefool.jpeg</code>).
+      </p>
+      <hr />
+      <p>🤝 <strong>Contribuir:</strong></p>
+      <p>Las sugerencias, mejoras y pull requests son siempre bienvenidos. ¡Ayúdanos a hacer de esta la mejor API de Tarot gratuita!</p>
+      <p>¡Abraza lo místico y potencia tus proyectos con nuestra API!</p>
+      <p><em>Desarrollado con la cantidad minima de ❤️ requerida por la ley.</em></p>
+      <p><em>esta documentacion fue definitivamente escrita por un humano</em></p>
+    </div>
+  </body>
+</html>
