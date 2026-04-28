@@ -3,12 +3,14 @@ const dotenv = require('dotenv');
 const cardRoutes = require('./routes/cardRoutes'); // Import modular route handlers
 const errorHandler = require('./middlewares/errorHandler'); // Import error handling middleware
 const path = require('path');
+const cors = require('cors'); 
 
 dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000; // Use a default port if PORT environment variable is not defined
 
 app.use(express.json());
+app.use(cors());
 
 app.use('/tarotdeck', express.static('images'));
 
